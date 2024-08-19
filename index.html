@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上向き矢印の色と文字の色を変更する</title>
+    <style>
+        /* 矢印の形状をCSSで作成 */
+        .arrow {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 50px solid lightblue; /* 矢印の高さを50pxに設定 */
+            position: relative;
+            margin: 120px auto 20px auto; /* 120pxに設定して矢印を50px下げる */
+            text-align: center;
+        }
+
+        /* 矢印の棒の部分 */
+        .arrow-shaft {
+            width: 80px;
+            height: 50px; /* 棒の高さを50pxに設定 */
+            background-color: lightblue;
+            position: absolute;
+            top: 49px; /* 矢印の先端からの距離を設定 */
+            left: -40px;
+        }
+
+        /* 文字の位置を調整 */
+        .arrow-text {
+            position: absolute;
+            top: 60px; /* 文字の位置を50px下げる */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            font-family: 'OCR A Extended', monospace;
+            transition: color 0.3s;
+        }
+
+        /* カラーパレットを中央に配置 */
+        .color-controls {
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        .color-controls label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="arrow">
+        <div class="arrow-shaft"></div>
+        <div id="arrow-text" class="arrow-text">The Dreamers' Hideout Society</div>
+    </div>
+
+    <div class="color-controls">
+        <label for="arrow-color">図形の色:</label>
+        <input type="color" id="arrow-color" value="#ADD8E6">
+
+        <label for="text-color">文字の色:</label>
+        <input type="color" id="text-color" value="#000000">
+    </div>
+
+    <script>
+        // 図形の色を変更する
+        document.getElementById('arrow-color').addEventListener('input', function() {
+            const newColor = this.value;
+            document.querySelector('.arrow').style.borderBottomColor = newColor;
+            document.querySelector('.arrow-shaft').style.backgroundColor = newColor;
+        });
+
+        // 文字の色を変更する
+        document.getElementById('text-color').addEventListener('input', function() {
+            const newColor = this.value;
+            document.getElementById('arrow-text').style.color = newColor;
+        });
+    </script>
+</body>
+</html>
